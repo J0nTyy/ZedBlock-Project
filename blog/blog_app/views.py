@@ -2,7 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Post
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
+import django.contrib.auth
+
 
 def login(request):
     if request.method == 'POST':
@@ -10,7 +12,7 @@ def login(request):
         password = request.POST.get('upassword')
         user = authenticate(request, username=name, password=password)
         if user is not None:
-            login(request, user)
+            django.contrib.auth.login(request, user)
             return redirect('/home')
         else:
             redirect('/login')
