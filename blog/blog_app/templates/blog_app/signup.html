@@ -1,6 +1,6 @@
 {% extends 'blog_app/base.html' %}
 {% block content %}
-
+{% load static %}
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -10,17 +10,16 @@
 
                 <form class="card-body cardbody-color p-lg-5" method="post">
                     {% csrf_token %}
-                    <div class="text-center">
+                    <a href="/home"><img class="rounded-circle mx-auto d-block" src="{% static 'image/logo.png' %}" alt="" height="80"></a>
+                    <div class="text-center" style="padding-top: 25px">
                         <h2>Create An Account</h2>
                     </div>
                     <br>
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="Username" name="uname" aria-describedby="emailHelp"
-                            placeholder="Your Name" required>
+                        <input type="text" class="form-control" id="Username" name="uname" aria-describedby="emailHelp" placeholder="Your Name" required>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="email" name="uemail" aria-describedby="emailHelp"
-                            placeholder="Your Email" required>
+                        <input type="email" class="form-control" id="email" name="uemail" aria-describedby="emailHelp" placeholder="Your Email" required>
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" id="password" name="upassword"
@@ -30,7 +29,7 @@
                         <input type="password" class="form-control" id="password" placeholder="Retype Your password">
                     </div> -->
                     <br>
-                    <div class="text-center"><button type="submit" class="btn btn-secondary btn-lg px-5 mb-5 w-100">Sign
+                    <div class="text-center"><button type="submit" class="btn btn-success btn-lg px-5 mb-5 w-100">Sign
                             Up</button>
                     </div>
                     <div id="emailHelp" class="form-text text-center mb-5 text-dark">Have already an account ? <a
