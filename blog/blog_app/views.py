@@ -49,10 +49,13 @@ def create_new_post(request):
 
 
 def my_post(request):
-    context = {
-        'posts': Post.objects.filter(author=request.user)
-    }
-    return render(request, 'blog_app/my_post.html', context)
+    if request.user.is_authenticated:
+        context = {
+            'posts': Post.objects.filter(author=request.user)
+        }
+        return render(request, 'blog_app/my_post.html', context)
+    else:
+        return redirect('/login')
 
 
 def signout(request):
