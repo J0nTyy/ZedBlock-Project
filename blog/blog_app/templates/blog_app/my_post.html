@@ -1,0 +1,53 @@
+{% extends 'blog_app/base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="container custom-container">
+    <nav class="navbar navbar-light bg-warning">
+        <div class="container-fluid">
+            <a href="/home"><img class="rounded-circle" src="{% static 'image/logo.png' %}" alt="" height="80"></a>
+            <h1>Blog Website</h1>
+            <form class="form-inline my-2 my-lg-0">
+                <div class="dropdown me-2">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/newpost">New Post</a>
+                        <a class="dropdown-item" href="/mypost">My Posts</a>
+                        <a class="dropdown-item" href="/signout">Sign Out</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </nav>
+
+    <br><br>
+    <div class="container">
+
+    </div>
+    <br>
+    <div class="container custom-container" style="max-width: 1350px ; background-color:#ffffff; ">
+        <h1>My Posts </h1>
+        {% for post in posts %}
+        <article class="media content-section">
+
+            <div class="media-body" style="border: 1px solid black; padding: 23px; margin-bottom: 10px;">
+
+                <div class="article-metadata">
+                    <!-- <h3 aligh="left">{{ post.author }} </h3>
+                    <h5 aligh="right">{{ post.date_posted|date:"F d, Y" }}</h5> -->
+                    <h2 class="text-uppercase" style="text-align:left;float:left; color: #000000;">{{ post.author }}</h2>
+                    <h5 style="text-align:right;float:right;">{{ post.date_posted|date:"F d, Y" }}</h5>
+                    <hr style="clear:both;" />
+
+                </div>
+                <h3>{{ post.title }}</h3>
+                <p class="article-content">{{ post.content }}</p>
+                <br><br>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
