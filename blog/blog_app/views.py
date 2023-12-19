@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from . import models
 from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
@@ -35,3 +35,26 @@ def home_page(request):
         'posts': Post.objects.all()
     }
     return render(request, 'blog_app/home_page.html', context)
+
+
+def create_new_post(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        new_post = models.Post(title=title, content=content, author=request.user)
+        new_post.save()
+        return redirect('/home')
+
+    return render(request, 'blog_app/create_new_post.html')
+
+
+def my_post(request):
+    context = {
+        'posts': Post.objects.filter(author=request.user)
+    }
+    return render(request, 'blog_app/my_post.html', context)
+
+
+def signout(request):
+    logout(request)
+    return redirect('/login')
