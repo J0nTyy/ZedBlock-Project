@@ -4,6 +4,7 @@ from .models import Post
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, logout
 import django.contrib.auth
+from django.contrib import messages
 
 
 def login(request):
@@ -44,8 +45,11 @@ def create_new_post(request):
         new_post = models.Post(title=title, content=content, author=request.user)
         new_post.save()
         return redirect('/home')
-
-    return render(request, 'blog_app/create_new_post.html')
+    if request.user.is_authenticated:
+        return render(request, 'blog_app/create_new_post.html')
+    else:
+        messages.error(request, 'KINDLY LOGIN TO ADD POSTS')
+        return redirect('/login')
 
 
 def edit_post(request, pk):
@@ -78,6 +82,7 @@ def my_post(request):
         }
         return render(request, 'blog_app/my_post.html', context)
     else:
+        messages.error(request, 'KINDLY LOGIN TO VIEW YOUR POSTS')
         return redirect('/login')
 
 
