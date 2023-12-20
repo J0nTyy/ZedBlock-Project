@@ -13,10 +13,8 @@
 
 <h3>Clone the Repository</h3>
 
-<pre><code>git clone https://github.com/J0nTyy/ZedBlock-Project.git
-cd ZedBlock-Project
-</code></pre>
-
+<pre><code>git clone https://github.com/J0nTyy/ZedBlock-Project.git</code></pre>
+<pre><code>cd ZedBlock-Project</code></pre>
 <h3>Create and Activate Virtual Environment (Optional)</h3>
 
 <pre><code>python -m venv venv
