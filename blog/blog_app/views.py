@@ -48,6 +48,11 @@ def create_new_post(request):
     return render(request, 'blog_app/create_new_post.html')
 
 
+def edit_post(request, id):
+    blog = User.objects.get(id=id)
+    return render(request, 'blog_app/edit_post.html')
+
+
 def my_post(request):
     if request.user.is_authenticated:
         context = {
