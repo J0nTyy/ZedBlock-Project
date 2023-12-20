@@ -23,11 +23,10 @@
     </nav>
 
     <br><br><br>
-    <div class="container custom-container" style="max-width: 1350px ; background-color:#ffffff; ">
+    <div class="container custom-container" style="max-width: 1350px ; ">
         {% for post in posts %}
         <article class="media content-section">
-
-            <div class="media-body" style="border: 5px solid #000000; padding: 23px; margin-bottom: 10px;">
+            <div class="media-body" style="border:2px solid #000000; border-radius:15px ; background-color:#ffffff; padding: 23px; margin-bottom: 25px;">
                 <div class="article-metadata">
                     <!-- <h3 aligh="left">{{ post.author }} </h3>
                     <h5 aligh="right">{{ post.date_posted|date:"F d, Y" }}</h5> -->
@@ -36,8 +35,7 @@
                     <hr style="clear:both;" />
                 </div>
                 <h3>{{ post.title }}</h3>
-                <p class="article-content">{{ post.content }}</p>
-                <br><br>
+                <p>{{ post.content }}</p>
             </div>
         </article>
         {% endfor %}

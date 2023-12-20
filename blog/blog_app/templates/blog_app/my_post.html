@@ -23,16 +23,16 @@
     </nav>
 
     <br><br>
-    <div class="container custom-container" style="max-width: 1350px ; background-color:#ffffff; text-align: center ">
+    <div class="container custom-container" style="max-width: 300px ; border-radius: 20px; padding-top: 5px; padding-bottom: 5px; background-color:#ffffff; text-align: center ">
         <h1>My Posts </h1>
     </div>
     <br>
-    <div class="container custom-container" style="max-width: 1350px ; background-color:#ffffff; ">
+    <div class="container custom-container" style="max-width: 1350px ;">
 
         {% for post in posts %}
         <article class="media content-section">
 
-            <div class="media-body" style="border: 1px solid black; padding: 23px; margin-bottom: 10px;">
+            <div class="media-body" style="border: 2px solid black; padding: 23px; margin-bottom: 10px; background-color:#ffffff; border-radius:15px ;">
 
                 <div class="article-metadata">
                     <!-- <h3 aligh="left">{{ post.author }} </h3>
@@ -44,11 +44,10 @@
                 </div>
                 <h3>{{ post.title }}</h3>
                 <p class="article-content">{{ post.content }}</p>
-                <div class="card-footer" style="text-align:right; ">
-                    <a class="btn btn-sm btn-info" href="/edit"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                    <a class="btn btn-sm btn-danger" href=""> <i class="fa-solid fa-trash"></i> Delete</a>
+                <div class="card-footer" style="text-align:right; margin: 20px -25px -35px;background-color:rgba(129,127,127,0.11); padding: 10px 20px 20px;">
+                    <a class="btn btn-sm btn-info" href="/edit/{{post.id}}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                    <a class="btn btn-sm btn-danger" href="/delete/{{post.id}}"> <i class="fa-solid fa-trash"></i> Delete</a>
                 </div>
-                <br><br>
             </div>
         </article>
         {% endfor %}

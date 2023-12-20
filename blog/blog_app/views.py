@@ -32,7 +32,7 @@ def signup(request):
 
 def home_page(request):
     context = {
-        'posts': Post.objects.all()
+        'posts': Post.objects.all().order_by('date_posted').reverse()
     }
     return render(request, 'blog_app/home_page.html', context)
 
@@ -48,9 +48,27 @@ def create_new_post(request):
     return render(request, 'blog_app/create_new_post.html')
 
 
-def edit_post(request, id):
-    blog = User.objects.get(id=id)
-    return render(request, 'blog_app/edit_post.html')
+def edit_post(request, pk):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        post = Post.objects.get(id=pk)
+        post.title = title
+        post.content = content
+        post.save()
+        return redirect('/mypost')
+    else:
+        post = Post.objects.get(id=pk)
+        context = {
+            'post': post
+        }
+        return render(request, 'blog_app/edit_post.html', context)
+
+
+def delete_post(request, pk):
+    post = Post.objects.get(id=pk)
+    post.delete()
+    return redirect('/mypost')
 
 
 def my_post(request):
