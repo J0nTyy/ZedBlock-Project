@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . import models
 from .models import Post
 from django.contrib.auth.models import User
@@ -38,6 +38,11 @@ def home_page(request):
     return render(request, 'blog_app/home_page.html', context)
 
 
+def read_post(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    return render(request, 'blog_app/read_post.html', {'post': post})
+
+
 def create_new_post(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -52,25 +57,25 @@ def create_new_post(request):
         return redirect('/login')
 
 
-def edit_post(request, pk):
+def edit_post(request, post_id):
     if request.method == 'POST':
         title = request.POST.get('title')
         content = request.POST.get('content')
-        post = Post.objects.get(id=pk)
+        post = Post.objects.get(id=post_id)
         post.title = title
         post.content = content
         post.save()
         return redirect('/mypost')
     else:
-        post = Post.objects.get(id=pk)
+        post = Post.objects.get(id=post_id)
         context = {
             'post': post
         }
         return render(request, 'blog_app/edit_post.html', context)
 
 
-def delete_post(request, pk):
-    post = Post.objects.get(id=pk)
+def delete_post(request, post_id):
+    post = Post.objects.get(id=post_id)
     post.delete()
     return redirect('/mypost')
 

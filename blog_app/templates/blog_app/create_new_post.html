@@ -25,10 +25,12 @@
         {% csrf_token %}
         <div class="container custom-container " style="max-width: 1250px;">
             <br><br>
-            <h1 class="fw-bolder"> Make a new post.</h1>
+            <div class="container custom-container" style="max-width: 500px ; border-radius: 20px; padding-top: 5px; padding-bottom: 5px; background-color:#ffffff; text-align: center ">
+                <h1>Make a new post</h1>
+            </div>
             <hr><br>
             <div class="mb-3">
-                <h3><label for="exampleInputEmail1" class="form-label">Heading/Title</label></h3>
+                <h3><label class="form-label">Heading/Title</label></h3>
                 <input type="text" class="form-control" id="exampleInputText" aria-describedby="emailHelp" name="title">
             </div>
             <div class="form-group">

@@ -15,37 +15,33 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="/newpost">New Post</a>
                         <a class="dropdown-item" href="/mypost">My Posts</a>
-                        {% if user.is_authenticated %}
                         <a class="dropdown-item" href="/signout">Sign Out</a>
-                        {% else %}
-                        <a class="dropdown-item" href="/signout">Login</a>
-                        {% endif %}
                     </div>
                 </div>
             </form>
         </div>
     </nav>
 
-    <br><br><br>
-    <div class="container custom-container" style="max-width: 1350px ; ">
-        {% for post in posts %}
-        <article class="media content-section">
-            <div class="media-body" style="border:2px solid #000000; border-radius:15px ; background-color:#ffffff; padding: 23px; margin-bottom: 25px;">
-                <div class="article-metadata ">
-                    <h1 class="" style="text-align:left;float:left; color: #000000;">{{ post.title }}</h1>
-                    <h6 style="text-align:right;float:right;">{{ post.date_posted|date:"F d, Y" }}</h6>
-                    <hr style="clear:both;" />
-                </div>
-                <p>{{ post.content}}</p>
+    <br><br>
+    <div class="container custom-container" style="max-width: 500px ; border-radius: 20px; padding-top: 5px; padding-bottom: 5px; background-color:#ffffff; text-align: center ">
+        <h1>{{ post.title }}</h1>
+    </div>
+    <br>
+    <div class="container custom-container" style="max-width: 1350px ;">
 
-                <div class="card-footer d-flex justify-content-between align-items-center" style="margin: 20px -25px -35px;background-color:rgba(129,127,127,0.11); padding: 10px 20px 20px;">
-                    <h5>posted by: {{ post.author }}</h5>
-                    <a class="btn btn-sm btn-info" href="/read/{{post.id}}"><i class="fa-brands fa-readme"></i> Read Post</a>
+        <article class="media content-section">
+
+            <div class="media-body" style="border: 2px solid black; padding: 23px; margin-bottom: 10px; background-color:#ffffff; border-radius:15px ;">
+
+                <div class="article-metadata">
+                    <h2 class="text-uppercase" style="text-align:left;float:left; color: #000000;">posted by: {{ post.author }}</h2>
+                    <h5 style="text-align:right;float:right;">{{ post.date_posted|date:"F d, Y" }}</h5>
+                    <hr style="clear:both;" />
+
                 </div>
+                <p class="article-content">{{ post.content }}</p>
             </div>
         </article>
-        {% endfor %}
     </div>
 </div>
-
 {% endblock %}
