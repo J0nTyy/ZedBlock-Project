@@ -83,7 +83,7 @@ def delete_post(request, post_id):
 def my_post(request):
     if request.user.is_authenticated:
         context = {
-            'posts': Post.objects.filter(author=request.user)
+            'posts': Post.objects.filter(author=request.user).order_by('date_posted').reverse()
         }
         return render(request, 'blog_app/my_post.html', context)
     else:
